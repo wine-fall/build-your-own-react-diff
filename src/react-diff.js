@@ -1,6 +1,6 @@
 const FiberStatus = {
     PLACEMENT: 'Placement',
-    CHILDDELETE: 'ChildDelete'
+    CHILDDELETION: 'ChildDeletion'
 };
 
 export class Fiber {
@@ -153,7 +153,7 @@ export const reconcileChildrenArray = (returnFiber, node, newChildren) => {
         oldFiber = oldFiber.sibling;
     }
     if (newIndex >= n) {
-        returnFiber.flags = FiberStatus.CHILDDELETE;
+        returnFiber.flags = FiberStatus.CHILDDELETION;
         while (oldFiber !== null) {
             deleteChild(returnFiber, oldFiber);
             oldFiber = oldFiber.sibling;
@@ -191,7 +191,7 @@ export const reconcileChildrenArray = (returnFiber, node, newChildren) => {
         }
     }
     if (oldFiberMap.size > 0) {
-        returnFiber.flags = FiberStatus.CHILDDELETE;
+        returnFiber.flags = FiberStatus.CHILDDELETION;
         oldFiberMap.forEach((node) => {
             deleteChild(returnFiber, node);
         });
