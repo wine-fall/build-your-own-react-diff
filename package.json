@@ -1,0 +1,20 @@
+{
+  "name": "build-your-own-react-diff",
+  "version": "1.0.0",
+  "description": "write a react diff algorithm by yourself",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wine-fall/build-your-own-react-diff.git"
+  },
+  "author": "fall-wine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wine-fall/build-your-own-react-diff/issues"
+  },
+  "homepage": "https://github.com/wine-fall/build-your-own-react-diff#readme"
+}
