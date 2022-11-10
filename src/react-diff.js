@@ -42,7 +42,6 @@ export const createDom = (type) => {
 const createFiber = (node, newChild) => {
     if (node === null) {
         const newFiber = new Fiber(newChild.key, newChild.type);
-        newFiber.flags = FiberStatus.PLACEMENT;
         return newFiber;
     }
     if (newChild.key === node.key) {
@@ -163,6 +162,7 @@ export const reconcileChildrenArray = (returnFiber, node, newChildren) => {
     if (oldFiber === null) {
         for (; newIndex < n; newIndex++) {
             const newFiber = createFiber(null, newChildren[newIndex]);
+            lastPlacedIndex = palceChild(lastPlacedIndex, newFiber, newIndex);
             if (prevNewNode === null) {
                 resultNode = newFiber;
                 prevNewNode = newFiber;
