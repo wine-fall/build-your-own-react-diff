@@ -40,11 +40,11 @@ export const createDom = (type) => {
  * @returns {Fiber | null}
  */
 const createFiber = (node, newChild) => {
-    if (node === null) {
+    if (newChild && node === null) {
         const newFiber = new Fiber(newChild.key, newChild.type);
         return newFiber;
     }
-    if (newChild.key === node.key) {
+    if (newChild && newChild.key === node.key) {
         const newFiber = new Fiber(newChild.key, newChild.type);
         if (newChild.type === node.type) {
             newFiber.alternate = node;
@@ -66,6 +66,9 @@ const createFiber = (node, newChild) => {
  * @returns {Fiber}
  */
 const createFiberFromMap = (oldFiberMap, newChild) => {
+    if (newChild === null) {
+        return null;
+    }
     const key = newChild.key;
     const node = oldFiberMap.get(key) || null;
     const newFiber = createFiber(node, newChild);
@@ -179,6 +182,9 @@ export const reconcileChildrenArray = (returnFiber, node, newChildren) => {
     for (; newIndex < n; newIndex++) {
         const child = newChildren[newIndex];
         const newFiber = createFiberFromMap(oldFiberMap, child);
+        if (newFiber === null) {
+            continue;
+        }
         lastPlacedIndex = palceChild(lastPlacedIndex, newFiber, newIndex);
         if (prevNewNode === null) {
             resultNode = newFiber;

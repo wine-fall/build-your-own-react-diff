@@ -22,7 +22,9 @@ export const createFiberList = (list) => {
  * @returns {JSXElement[]}
  */
 export const createJSXList = (list) => {
-    return list.map(key => new JSXElement(key, 'div'));
+    return list.map(key => {
+        return key === null ? null : new JSXElement(key, 'div')
+    });
 };
 
 /**
@@ -35,7 +37,8 @@ export const convertFiberListToArray = (fiber) => {
     while (fiber !== null) {
         ret.push({
             key: fiber.key,
-            flags: fiber.flags
+            flags: fiber.flags,
+            index: fiber.index
         });
         fiber = fiber.sibling;
     }
