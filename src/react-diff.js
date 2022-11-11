@@ -66,9 +66,6 @@ const createFiber = (node, newChild) => {
  * @returns {Fiber}
  */
 const createFiberFromMap = (oldFiberMap, newChild) => {
-    if (newChild === null) {
-        return null;
-    }
     const key = newChild.key;
     const node = oldFiberMap.get(key) || null;
     const newFiber = createFiber(node, newChild);
