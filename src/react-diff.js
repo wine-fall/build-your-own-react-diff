@@ -42,6 +42,7 @@ export const createDom = (type) => {
 const createFiber = (node, newChild) => {
     if (newChild && node === null) {
         const newFiber = new Fiber(newChild.key, newChild.type);
+        newFiber.stateNode = createDom(newChild.type);
         return newFiber;
     }
     if (newChild && newChild.key === node.key) {
